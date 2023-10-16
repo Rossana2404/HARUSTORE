@@ -25,7 +25,7 @@
 
 
 <div class="header-container1">
-    <div class="welcome-text"></div>
+    <div class="welcome-text">¡Bienvenido!</div>
     <div class="logo-container">
         <img src="assents/img/Logo3.jpg" title="Haru Store" alt="Haru Store" style="width: 300px; height: auto;">
     </div>
