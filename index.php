@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title>Tienda</title>
+    <title>Tienda Ecommerce</title>
     <base href="">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
     <link rel="shortcut icon" href="assentes/img/item4.jpg" type="">
