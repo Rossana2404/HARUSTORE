@@ -34,7 +34,7 @@
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-list-alt"></span> Administrar Producto <span class="caret"></span></a>
               <ul class="dropdown-menu">
-                <li><a href="categorias.php">Categorias</a></li>
+                <li><a href="categoria.php">Categorias</a></li>
                 <li><a href="producto.php">Productos</a></li>
               </ul>
             </li>
@@ -43,9 +43,9 @@
             <?php
             if ($_SESSION['usuario'] == "usuario") :
             ?>
-              <li><a href="usuarios.php"><span class="glyphicon glyphicon-user">
+              <li><a href="usuario.php"><span class="glyphicon glyphicon-user">
 
-                  </span> Administrar usuarios</a>
+                  </span> Administrar usuario</a>
               </li>
             <?php
             endif;

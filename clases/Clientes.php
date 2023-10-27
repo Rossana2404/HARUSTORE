@@ -12,7 +12,7 @@
 										apellido,
 										direccion,
 										correo,
-										contrasena,
+										password,
 										telefono,
 										
 										)
@@ -30,13 +30,13 @@
 			$c= new conectar();
 			$conexion=$c->conexion();
 
-			$sql="SELECT id_cliente, 
-							nombre,
-							apellido,
-							direccion,
-							email,
-							telefono,
-							rfc 
+			$sql="SELECT id_cliente,
+						nombre,
+						apellido,
+						direccion,
+						correo,
+						password,
+						telefono 
 				from clientes";
 			$result=mysqli_query($conexion,$sql);
 			$ver=mysqli_fetch_row($result);
@@ -46,9 +46,9 @@
 					'nombre' => $ver[1],
 					'apellido' => $ver[2],
 					'direccion' => $ver[3],
-					'email' => $ver[4],
+					'correo' => $ver[4],
 					'telefono' => $ver[5],
-					'rfc' => $ver[6]
+					'password' => $ver[6]
 						);
 			return $datos;
 		}
@@ -59,9 +59,9 @@
 			$sql="UPDATE clientes set nombre='$datos[1]',
 										apellido='$datos[2]',
 										direccion='$datos[3]',
-										email='$datos[4]',
+										correo='$datos[4]',
 										telefono='$datos[5]',
-										rfc='$datos[6]' 
+										password='$datos[6]' 
 								where id_cliente='$datos[0]'";
 			return mysqli_query($conexion,$sql);
 		}

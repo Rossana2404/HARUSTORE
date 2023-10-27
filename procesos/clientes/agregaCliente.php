@@ -8,13 +8,16 @@ session_start();
 
 
 	$datos=array(
-			$_POST['nombre'],
-			$_POST['apellidos'],
-			$_POST['direccion'],
-			$_POST['email'],
-			$_POST['telefono'],
-			$_POST['rfc']
+		$_POST['idclienteU'],
+			$_POST['NombreU'],
+			$_POST['apellidoU'],
+			$_POST['CorreoU'],
+			$_POST['ContrasenaU'],
+			$_POST['TelefonoU'],
+			$_POST['FechadenacimientoU'],
+			$_POST['DireccionU']
 				);
+
 
 	echo $obj->agregaCliente($datos);
 

@@ -1,12 +1,13 @@
 <?php 
 
-	require_once "../../clases/Conexion.php";
-	require_once "../../clases/Usuarios.php";
+require_once "../../conexion/database.php";
+require_once "../../clases/Usuarios.php";
 
-	$obj= new usuarios;
+
+	$obj= new usuario;
 
 	$datos=array(
-			$_POST['idUsuario'],  
+			$_POST['id_Usuario'],  
 		    $_POST['nombreU'] , 
 		    $_POST['apellidoU'],  
 		    $_POST['usuarioU']

@@ -1,153 +1,100 @@
-  body {
-    height: 100%;
-    padding-top: 10px;
-    
-  }
-
-  .text-color {
-    color: #8B4513; /* Color de texto café */
-  }
-
-  section {
-    height: calc(90% - 50px);
-  }
-
-  .affix {
-    padding: 0px;
-    -webkit-transition: padding 0.2s linear;
-    -moz-transition: padding 0.2s linear;
-    -o-transition: padding 0.2s linear;
-    transition: padding 0.2s linear;
-
-  }
-
-  .affix-top {
-    padding-top: 5px;
-    padding-bottom: 15px;
-    -webkit-transition: padding 0.5s linear;
-    -moz-transition: padding 0.5s linear;
-    -o-transition: padding 0.5s linear;
-    transition: padding 0.5s linear;
-  }
-
-  /* Agrega estilos CSS para los menús */
-  .menu-container {
-    margin-top: 5px;
-    background-color: #e0766d;
-    padding: 20px;
-    display: flex;
-    justify-content: flex-start;
-    /* Alinea los menús a la izquierda */
-    align-items: flex-start;
-    /* Alinea los menús en la parte superior verticalmente */
-    margin-bottom: 5px;
-  }
-
-  .menu {
-    position: relative;
-    margin-right: 30px;
-    /* Espacio entre los menús */
-  }
-
-  .menu a {
-    text-decoration: none;
-    color: #8B4513;
-    font-weight: bold;
-    padding: 10px 15px;
-    font-size: 25px;
-  }
-
-  .menu-dropdown {
-    display: none;
-    position: absolute;
-    top: 100%;
-    left: 10%;
-    background-color: white;
-    border: 6px solid #8B451e;;
-    z-index: 1;
-    
-  }
-
-  .menu-open .menu-dropdown {
-    
-    
-    padding: 10px; /* Ajusta el espaciado según sea necesario */
-    text-align: left;
-    
-  }
-
-  .horizontal-menu {
-    list-style: none;
-    padding: 100;
-    font-size: 100px;
-  }
-
-  .horizontal-menu li {
-    font-size: 100px;
-    margin: 0;
-  }
-
-  .horizontal-menu li a {
-    display: block;
-    padding: 10px;
-  }
-
-  /* Estilos para la barra de búsqueda y carrito */
-  .search-cart {
-    display: flex;
-    align-items: center;
-    
-  }
-
-  .search {
-    display: flex;
-    align-items: center;
-    margin-right: 20px;
-    
-  }
-/* Estilo para el contenedor de búsqueda */
-  .search input[type="text"] {
-    background-color: #f0f0f0;
-    border: 2px solid #ccc;
-    padding: 10px;
-    border-radius: 100px;
-    color: #8B451e;
-    width: 250px;
-    text-align: center;
-   
-  }
-
-     /* Estilo para el contenedor principal */
-     .search-container {
-      display: flex;
-      align-items: center;
-      padding: 20px;
-      background-color: #8B451e;
-      position: absolute;
-      right: 0;
-      float: right;
-      width: 0px;
-      padding: 0px; 
-      justify-content: flex-end;
-  }
-
-/* Estilo para el botón de búsqueda */
-.search-form .search-button {
-    background-color: #8B451e;
-    color: white;
-    border: none;
-    border-radius: 15px;
-    padding: 5px 20px;
-    cursor: pointer;
+/* Estilos para el cuerpo y la página HTML */
+html, body {
+  height: 100%;
+  padding-top: 10px;
+  margin: 3px;
 }
 
-/* Estilo para el campo de entrada de búsqueda dentro del formulario con clase .search-form */
-.search-form .search-input {
-  padding: 5px;
-  border: 2px solid #ccc;
-  border-radius: 15px;
-  width: 250px; /* Ancho fijo para el campo de entrada */
-  margin-right: 1px; /* Espacio entre el botón y el campo de búsqueda */
+/* Color de texto para la clase text-color */
+.text-color {
+  color: #8B4513; /* Color de texto café */
+}
+
+.header-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 50px; /* Ajusta el espacio interno según tus preferencias */
+  background-color: #f3f3f3; /* Color de fondo del encabezado */
+}
+.welcome-text {
+  color: #8B4513;
+  font-weight: bold;
+  font-size: 30px;
+  margin-right: auto;
+}
+
+.img-logo {
+  text-align: center; /* Centra el contenido del div */
+}
+.img-logo img {
+  max-width: 250px;
+  height: auto;
+  display: block; /* Para centrar horizontalmente */
+  margin: 0 auto;
+  
+}
+.login-registro {
+  display: flex;
+  align-items: center;
+  text-align: right; /* Alinea el contenido a la derecha */
+  /* Margen derecho para espacio en el margen derecho de la página */
+}
+
+.login-registro a {
+  text-decoration: none;
+  color: #8B4513;
+  font-weight: bold;
+  font-size: 30px;
+  margin-left: 10px;
+}
+
+.login-registro img {
+  width: 30px;
+  height: 30px;
+  margin-left: 10px;
+}
+
+.social-icons {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.social-icon {
+  text-decoration: none;
+  color: #333;
+  font-size: 30px;
+  margin-bottom: 10px;
+  margin: 0 5px;
+}
+
+.social-icon img {
+  width: 30px;
+  height: 30px;
+}
+/* Consulta de medios para pantallas más pequeñas */
+@media (max-width: 768px) {
+  .header-container {
+      flex-direction: column;
+      align-items: center;
+  }
+
+  .login-registro {
+      margin-top: 10px; /* Espacio entre el texto de bienvenida y los enlaces de inicio de sesión/registro */
+      text-align: center;
+  }
+
+  .social-icons {
+      margin-top: 10px; /* Espacio entre los enlaces de registro y los iconos sociales */
+  }
+}
+
+/* Estilos para la barra de navegación */
+.navbar {
+  padding: 0; /* Ajusta el espaciado de la barra de navegación */
+  font-size: 25px; /* Ajusta el tamaño de fuente según tus preferencias */
+  color: #6f4e37; /* Color del texto */
 }
 
 /* Estilo para la galería de imágenes */
@@ -171,56 +118,19 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  flex-wrap: wrap; /* Permite que las imágenes se envuelvan en dispositivos pequeños */
 }
 
-/* Estilo para cada imagen en la galería */
 .image-link {
-  flex: 1; /* Hace que cada imagen tome un espacio igual dentro de la galería */
-  max-width: calc(25% - 20px); /* Establece un ancho máximo para cada imagen (25% del contenedor menos el espacio entre las imágenes) */
-  margin: 10px; /* Espacio entre las imágenes */
-  text-align: center; /* Centra el contenido dentro de cada imagen */
+  border-radius: 10px; /* Redondear las esquinas de los enlaces de imagen */
+  overflow: hidden; /* Asegura que la imagen no se desborde si es más grande que el enlace */
 }
 
 .image-link img {
-  max-width: 100%; /* Hace que las imágenes se ajusten al ancho máximo del contenedor */
-  height: auto; /* Mantiene la proporción de aspecto de las imágenes */
+  width: 100%; /* Asegura que la imagen se ajuste al contenedor redondeado */
 }
 
-
-.header-container1 {
-  display: flex;
-  justify-content: space-between; /* Coloca los elementos en los extremos horizontalmente */
-  align-items: center; /* Centra verticalmente los elementos */
-  padding: 10px; /* Espaciado interior */
-  background-color: #f0f0f0; /* Color de fondo */
-}
-
-.welcome-text {
-  color: #8B4513; /* Color de texto café */
-  font-weight: bold; /* Texto en negrita */
-  font-size: 50px; /* Tamaño de fuente más grande (ajusta según tus preferencias) */
-  margin-bottom: 20px; /* Margen inferior de 20px */
-}
-
-.login-registro {
-  display: flex; /* Para alinear los elementos horizontalmente */
-  align-items: center; /* Centra verticalmente los elementos */
-}
-
-.login-registro a {
-  text-decoration: none; /* Elimina subrayado de los enlaces */
-  color: #8B4513; /* Color de texto café */
-  font-weight: bold; /* Texto en negrita */
-  font-size: 30px; /* Tamaño de fuente (ajusta según tus preferencias) */
-  margin-left: 10px; /* Espacio entre los enlaces de Login y Registro */
-  margin-right: auto;
-}
-
-.login-registro img {
-  width: 50px; /* Ancho de la imagen */
-  height: 50px; /* Altura de la imagen */
-  margin-left: 10px; /* Espacio entre la imagen y los enlaces */
+.divider {
+  width: 10px; /* Espacio entre las imágenes */
 }
 
 /* Estilo para el footer */
@@ -253,84 +163,5 @@
 /* Estilo para el botón de WhatsApp al pasar el mouse */
 .btn-success:hover {
   background-color: #218838; /* Color de fondo del botón de éxito al pasar el mouse */
-}
-
-
-/* Estilos para el encabezado en la parte superior */
-.header-container1 .welcome-text {
-    font-size: 24px;
-    color: #0099cc;
-}
-
-/* Estilos para el logo en el encabezado */
-.header-container1 .logo-container img {
-    width: 300px;
-    height: auto;
-}
-
-/* Estilos para el botón de inicio de sesión y registro */
-.header-container1 .login-registro img {
-    width: 50px;
-    height: 50px;
-    margin-right: 5px;
-}
-
-.header-container1 .login-registro a {
-    color: #0099cc;
-}
-
-/* Estilos para el menú en la barra izquierda */
-.menu-container .menu-item a {
-    text-decoration: none;
-    color: #663300;
-}
-
-.menu-container .menu-item button {
-    background-color: #0099cc;
-    color: #663300;
-    border: none;
-    padding: 10px 20px;
-    cursor: pointer;
-}
-
-
-
-
-
-/* Estilos para el encabezado en la parte superior */
-.header-container1 .welcome-text {
-  font-size: 24px;
-  color: #0099cc;
-}
-
-/* Estilos para el logo en el encabezado */
-.header-container1 .logo-container img {
-  width: 300px;
-  height: auto;
-}
-
-/* Estilos para el botón de inicio de sesión y registro */
-.header-container1 .login-registro img {
-  width: 50px;
-  height: 50px;
-  margin-right: 5px;
-}
-
-.header-container1 .login-registro a {
-  color: #0099cc;
-}
-
-/* Estilos para el menú en la barra izquierda */
-.menu-container .menu-item a {
-  text-decoration: none;
-  color: #663300;
-}
-
-.menu-container .menu-item button {
-  background-color: #0099cc;
-  color: #663300;
-  border: none;
-  padding: 10px 20px;
-  cursor: pointer;
 }
 

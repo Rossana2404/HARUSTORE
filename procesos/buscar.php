@@ -3,7 +3,7 @@
 $categoria = $_GET['categoria'];
 
 // Define una lista de categorías y sus páginas correspondientes
-$categorias = array(
+$categoria = array(
     'adopcion' => 'adopcion.php',
     'cuidados' => 'cuidados.php',
     'gato' => 'gato.php',
@@ -11,9 +11,9 @@ $categorias = array(
 );
 
 // Comprueba si la categoría seleccionada está en la lista
-if (array_key_exists($categoria, $categorias)) {
+if (array_key_exists($categoria, $categoria)) {
     // Redirige a la página correspondiente
-    header("Location: " . $categorias[$categoria]);
+    header("Location: " . $categoria[$categoria]);
     exit;
 } else {
     // Si la categoría no existe, puedes mostrar un mensaje de error o redirigir a una página de error

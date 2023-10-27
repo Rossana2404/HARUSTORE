@@ -5,10 +5,11 @@ $c = new conectar();
 $conexion = $c->conexion();
 
 // Modifica la consulta para seleccionar categorías y subcategorías correspondientes a perros y gatos
-$sql = "SELECT c.nombre_categoria, c.nombre_subcategoria
-        FROM categorias c
-        JOIN animales_categoria ac ON c.id_categoria = ac.id_categoria
-        WHERE ac.id_animal = (SELECT id_animal FROM animales WHERE nombre_animal = 'perros' OR nombre_animal = 'gatos')";
+        $sql = "SELECT subproductos.id_subprod, subproductos.nombre_producto, categorias.id_categoria, categorias.nombre_categoria
+        FROM subproductos
+        JOIN categorias ON subproductos.categoria_id = categorias.id_categoria
+        ORDER BY categorias.nombre_categoria ASC;";
+
 
 $result = mysqli_query($conexion, $sql);
 
@@ -19,7 +20,7 @@ if ($result) {
         <caption><label>Categorías :D</label></caption>
         <tr>
             <td>Categoría</td>
-            <td>Subcategoría</td>
+            <td>subproductos</td>
         </tr>
 
         <?php

@@ -7,11 +7,18 @@ $obj= new producto();
 
 $datos=array(
 		$_POST['idProducto'],
-	    $_POST['categoriaSelectU'],
-	    $_POST['nombreU'],
 	    $_POST['descripcionU'],
-	    $_POST['cantidadU'],
-	    $_POST['precioU']
+	    $_POST['nombreU'],
+	    $_POST['fotoU'],
+	    $_POST['valorU'],
+	    $_POST['codigoU'],
+		$_POST['dimensionesU'],
+	    $_POST['ofertaU'],
+	    $_POST['promocionU'],
+	    $_POST['tallaU'],
+	    $_POST['colorU'],
+		$_POST['categoriaU'],
+	    
 			);
 
     echo $obj->actualizaProducto($datos);

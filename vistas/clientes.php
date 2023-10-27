@@ -5,16 +5,19 @@ if(isset($_SESSION['usuario'])){
 	?>
 
 
+
 	<!DOCTYPE html>
 	<html>
+
 	<head>
 		<title>clientes</title>
 		<?php require_once "./menu.php"; ?>
 	</head>
+
 	<body>
 		<div class="container">
 
-	
+
 			<h1>Clientes</h1>
 			<div class="row">
 				<div class="col-sm-4">
@@ -25,13 +28,13 @@ if(isset($_SESSION['usuario'])){
 						<input type="text" class="form-control input-sm" id="apellidos" name="apellidos">
 						<label>Direccion</label>
 						<input type="text" class="form-control input-sm" id="direccion" name="direccion">
-						<label>Email</label>
+						<label>Correo</label>
 						<input type="text" class="form-control input-sm" id="email" name="email">
 						<label>Telefono</label>
 						<input type="text" class="form-control input-sm" id="telefono" name="telefono">
-						<label>Contaseña</label>
-						<label>Contaseña</label>
-						<input type="text" class="form-control input-sm" id="rfc" name="rfc">
+						<label>Password</label>
+					
+						
 						<p></p>
 						<span class="btn btn-primary" id="btnAgregarCliente">Agregar</span>
 					</form>
@@ -79,17 +82,18 @@ if(isset($_SESSION['usuario'])){
 		</div>
 
 	</body>
+
 	</html>
 
 	<script type="text/javascript">
-		function agregaDatosCliente(idcliente){
+		function agregaDatosCliente(idcliente) {
 
 			$.ajax({
-				type:"POST",
-				data:"idcliente=" + idcliente,
-				url:"../procesos/",
-				success:function(r){
-					dato=jQuery.parseJSON(r);
+				type: "POST",
+				data: "idcliente=" + idcliente,
+				url: "../procesos/",
+				success: function(r) {
+					dato = jQuery.parseJSON(r);
 					$('#idclienteU').val(dato['id_cliente']);
 					$('#nombreU').val(dato['nombre']);
 					$('#apellidosU').val(dato['apellido']);
@@ -102,54 +106,54 @@ if(isset($_SESSION['usuario'])){
 			});
 		}
 
-		function eliminarCliente(idcliente){
-			alertify.confirm('¿Desea eliminar este cliente?', function(){ 
+		function eliminarCliente(idcliente) {
+			alertify.confirm('¿Desea eliminar este cliente?', function() {
 				$.ajax({
-					type:"POST",
-					data:"idcliente=" + idcliente,
-					url:"../procesos/clientes/eliminarCliente.php.php",
-					success:function(r){
-						if(r==1){
+					type: "POST",
+					data: "idcliente=" + idcliente,
+					url: "../procesos/clientes/eliminarCliente.php.php",
+					success: function(r) {
+						if (r == 1) {
 							$('#tablaClientesLoad').load("clientes/tablaClientes.php");
 							alertify.success("Eliminado con exito!!");
-						}else{
+						} else {
 							alertify.error("No se pudo eliminar :(");
 						}
 					}
 				});
-			}, function(){ 
+			}, function() {
 				alertify.error('Cancelo !')
 			});
 		}
 	</script>
 
 	<script type="text/javascript">
-		$(document).ready(function(){
+		$(document).ready(function() {
 
 			$('#tablaClientesLoad').load("clientes/tablaClientes.php");
 
-			$('#btnAgregarCliente').click(function(){
+			$('#btnAgregarCliente').click(function() {
 
-				vacios=validarFormVacio('frmClientes');
+				vacios = validarFormVacio('frmClientes');
 
-				if(vacios > 0){
+				if (vacios > 0) {
 					alertify.alert("Debes llenar todos los campos!!");
 					return false;
 				}
 
-				datos=$('#frmClientes').serialize();
+				datos = $('#frmClientes').serialize();
 
 				$.ajax({
-					type:"POST",
-					data:datos,
-					url:"../procesos/clientes/agregaCliente.php",
-					success:function(r){
+					type: "POST",
+					data: datos,
+					url: "../procesos/clientes/agregaCliente.php",
+					success: function(r) {
 
-						if(r==1){
+						if (r == 1) {
 							$('#frmClientes')[0].reset();
 							$('#tablaClientesLoad').load("clientes/tablaClientes.php");
 							alertify.success("Cliente agregado con exito :D");
-						}else{
+						} else {
 							alertify.error("No se pudo agregar cliente");
 						}
 					}
@@ -159,21 +163,21 @@ if(isset($_SESSION['usuario'])){
 	</script>
 
 	<script type="text/javascript">
-		$(document).ready(function(){
-			$('#btnAgregarClienteU').click(function(){
-				datos=$('#frmClientesU').serialize();
+		$(document).ready(function() {
+			$('#btnAgregarClienteU').click(function() {
+				datos = $('#frmClientesU').serialize();
 
 				$.ajax({
-					type:"POST",
-					data:datos,
-					url:"../procesos/clientes/actualizaCliente.php",
-					success:function(r){
+					type: "POST",
+					data: datos,
+					url: "../procesos/clientes/actualizaCliente.php",
+					success: function(r) {
 
-						if(r==1){
+						if (r == 1) {
 							$('#frmClientes')[0].reset();
 							$('#tablaClientesLoad').load("clientes/tablaClientes.php");
 							alertify.success("Cliente actualizado con exito :D");
-						}else{
+						} else {
 							alertify.error("No se pudo actualizar cliente");
 						}
 					}
@@ -183,8 +187,8 @@ if(isset($_SESSION['usuario'])){
 	</script>
 
 
-	<?php 
-}else{
+<?php
+} else {
 	header("location:../index.php");
 }
 ?>

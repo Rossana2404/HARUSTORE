@@ -1,9 +1,9 @@
 <?php 
 	require_once "conexion/database.php";
-	require_once "cl";
+	require_once "../../clases/Categorias.php";
 	$id=$_POST['idcategoria'];
 
-	$obj= new categorias();
+	$obj= new categoria();
 	echo $obj->eliminaCategoria($id);
 
  ?>

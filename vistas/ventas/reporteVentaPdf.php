@@ -1,95 +1,69 @@
 <?php 
-	require_once "conexion/database.php";
+	require_once "../../conexion/database.php";
 	require_once "../../clases/Ventas.php";
 
-	$objv= new ventas();
+	$c = new conectar();
+$conexion = $c->conexion();
+if (!$conexion) {
+    die("Error en la conexión: " . mysqli_connect_error());
+}
 
 
-	$c=new conectar();
-	$conexion= $c->conexion();	
-	$idventa=$_GET['id'];
+	$obj= new ventas();
 
- $sql="SELECT ve.id_venta,
-		ve.fechaCompra,
-		ve.id_cliente,
-		art.nombre,
-        art.precio,
-        art.descripcion
-	from ventas  as ve 
-	inner join producto as prod
-	on ve.id_producto=art.id_producto
-	and ve.id_venta='$idventa'";
+	$sql = "SELECT id_venta, MAX(fechaCompra) AS fechacompra, id_cliente FROM ventas GROUP BY id_venta, id_cliente";
 
-$result=mysqli_query($conexion,$sql);
+	$result=mysqli_query($conexion,$sql); 
+	?>
 
-	$ver=mysqli_fetch_row($result);
-
-	$folio=$ver[0];
-	$fecha=$ver[1];
-	$idcliente=$ver[2];
-
- ?>	
-
- <!DOCTYPE html>
- <html>
- <head>
- 	<title>Reporte de venta</title>
- 	<link rel="stylesheet" type="text/css" href="../../librerias/bootstrap/css/bootstrap.css">
- </head>
- <body>
- 		<img src="../../img/logo.jpg" width="200" height="200">
- 		<br>
- 		<table class="table">
- 			<tr>
- 				<td>Fecha: <?php echo $fecha; ?></td>
- 			</tr>
- 			<tr>
- 				<td>Folio: <?php echo $folio ?></td>
- 			</tr>
- 			<tr>
- 				<td>cliente: <?php echo $objv->nombreCliente($idcliente); ?></td>
- 			</tr>
- 		</table>
-
-
- 		<table class="table">
- 			<tr>
- 				<td>nombre producto</td>
- 				<td>Precio</td>
- 				<td>Cantidad</td>
- 				<td>Descripcion</td>
- 			</tr>
-
- 			<?php 
- 			$sql="SELECT ve.id_venta,
-						ve.fechaCompra,
-						ve.id_cliente,
-						art.nombre,
-				        art.precio,
-				        art.descripcion
-					from ventas  as ve 
-					inner join producto as prod
-					on ve.id_producto=art.id_producto
-					and ve.id_venta='$idventa'";
-
-			$result=mysqli_query($conexion,$sql);
-			$total=0;
-			while($mostrar=mysqli_fetch_row($result)):
- 			 ?>
-
- 			<tr>
- 				<td><?php echo $ver[3]; ?></td>
- 				<td><?php echo $ver[4]; ?></td>
- 				<td>1</td>
- 				<td><?php echo $ver[5]; ?></td>
- 			</tr>
- 			<?php 
- 				$total=$total + $ver[4];
- 			endwhile;
- 			 ?>
- 			 <tr>
- 			 	<td>Total=  <?php echo "$".$total; ?></td>
- 			 </tr>
- 		</table>
- </body>
- </html>
+<h4>Reportes y ventas</h4>
+<div class="row">
+	<div class="col-sm-1"></div>
+	<div class="col-sm-10">
+		<div class="table-responsive">
+			<table class="table table-hover table-condensed table-bordered" style="text-align: center;">
+				<caption><label>Ventas :)</label></caption>
+				<tr>
+					<td>Folio</td>
+					<td>Fecha</td>
+					<td>Cliente</td>
+					<td>Total de compra</td>
+					<td>Ticket</td>
+					<td>Reporte</td>
+				</tr>
+		<?php while($ver=mysqli_fetch_row($result)): ?>
+				<tr>
+					<td><?php echo $ver[0] ?></td>
+					<td><?php echo $ver[1] ?></td>
+					<td>
+						<?php
+							if($obj->nombreCliente($ver[2])==" "){
+								echo "S/C";
+							}else{
+								echo $obj->nombreCliente($ver[2]);
+							}
+						 ?>
+					</td>
+					<td>
+						<?php 
+							echo "$".$obj->obtenerTotal($ver[0]);
+						 ?>
+					</td>
+					<td>
+						<a href="../procesos/ventas/crearTicketPdf.php?idventa=<?php echo $ver[0] ?>" class="btn btn-danger btn-sm">
+							Ticket <span class="glyphicon glyphicon-list-alt"></span>
+						</a>
+					</td>
+					<td>
+						<a href="../procesos/ventas/crearReportePdf.php?idventa=<?php echo $ver[0] ?>
+						" class="btn btn-danger btn-sm">
+							Reporte <span class="glyphicon glyphicon-file"></span>
+						</a>	
+					</td>
+				</tr>
+		<?php endwhile; ?>
+			</table>
+		</div>
+	</div>
+	<div class="col-sm-1"></div>
+</div>

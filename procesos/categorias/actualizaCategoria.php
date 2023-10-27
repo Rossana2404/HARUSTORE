@@ -6,7 +6,7 @@ if (isset($_POST['idcategoria']) && isset($_POST['categoriaU'])) {
     $idCategoria = $_POST['idcategoria'];
     $categoriaNueva = $_POST['categoriaU'];
     
-    $obj = new Categorias();
+    $obj = new Categoria();
     $datos = array($idCategoria, $categoriaNueva);
     
     $resultado = $obj->actualizaCategoria($datos);

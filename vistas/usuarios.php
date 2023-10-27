@@ -1,5 +1,6 @@
 <?php 
 session_start();
+
 if(isset($_SESSION['usuario']) and $_SESSION['usuario']=='admin'){
 	?>
 	<!DOCTYPE html>
@@ -47,6 +48,7 @@ if(isset($_SESSION['usuario']) and $_SESSION['usuario']=='admin'){
 					</div>
 					<div class="modal-body">
 						<form id="frmRegistroU">
+						   
 							<input type="text" hidden="" id="idUsuario" name="idUsuario">
 							<label>Nombre</label>
 							<input type="text" class="form-control input-sm" name="nombreU" id="nombreU">
@@ -54,7 +56,7 @@ if(isset($_SESSION['usuario']) and $_SESSION['usuario']=='admin'){
 							<input type="text" class="form-control input-sm" name="apellidoU" id="apellidoU">
 							<label>Usuario</label>
 							<input type="text" class="form-control input-sm" name="usuarioU" id="usuarioU">
-
+							
 						</form>
 					</div>
 					<div class="modal-footer">
@@ -74,14 +76,14 @@ if(isset($_SESSION['usuario']) and $_SESSION['usuario']=='admin'){
 			$.ajax({
 				type:"POST",
 				data:"idusuario=" + idusuario,
-				url:"../procesos/usuarios/obtenDatosUsuario.php",
+				url:"../procesos/usuario/obtenDatosUsuario.php",
 				success:function(r){
 					dato=jQuery.parseJSON(r);
 
 					$('#idUsuario').val(dato['id_usuario']);
 					$('#nombreU').val(dato['nombre']);
 					$('#apellidoU').val(dato['apellido']);
-					$('#usuarioU').val(dato['email']);
+					$('#usuarioU').val(dato['correo']);
 				}
 			});
 		}
@@ -91,10 +93,10 @@ if(isset($_SESSION['usuario']) and $_SESSION['usuario']=='admin'){
 				$.ajax({
 					type:"POST",
 					data:"idusuario=" + idusuario,
-					url:"../procesos/usuarios/eliminarUsuario.php",
+					url:"../procesos/usuario/eliminarUsuario.php",
 					success:function(r){
 						if(r==1){
-							$('#tablaUsuariosLoad').load('usuarios/tablaUsuarios.php');
+							$('#tablaUsuariosLoad').load('usuario/tablaUsuarios.php');
 							alertify.success("Eliminado con exito!!");
 						}else{
 							alertify.error("No se pudo eliminar :(");
@@ -117,11 +119,11 @@ if(isset($_SESSION['usuario']) and $_SESSION['usuario']=='admin'){
 				$.ajax({
 					type:"POST",
 					data:datos,
-					url:"../procesos/usuarios/actualizaUsuario.php",
+					url:"../procesos/usuario/actualizaUsuario.php",
 					success:function(r){
 
 						if(r==1){
-							$('#tablaUsuariosLoad').load('usuarios/tablaUsuarios.php');
+							$('#tablaUsuariosLoad').load('usuario/tablaUsuarios.php');
 							alertify.success("Actualizado con exito :D");
 						}else{
 							alertify.error("No se pudo actualizar :(");
@@ -135,7 +137,7 @@ if(isset($_SESSION['usuario']) and $_SESSION['usuario']=='admin'){
 	<script type="text/javascript">
 		$(document).ready(function(){
 
-			$('#tablaUsuariosLoad').load('usuarios/tablaUsuarios.php');
+			$('#tablaUsuariosLoad').load('usuario/tablaUsuarios.php');
 
 			$('#registro').click(function(){
 
@@ -156,7 +158,7 @@ if(isset($_SESSION['usuario']) and $_SESSION['usuario']=='admin'){
 
 						if(r==1){
 							$('#frmRegistro')[0].reset();
-							$('#tablaUsuariosLoad').load('usuarios/tablaUsuarios.php');
+							$('#tablaUsuariosLoad').load('usuario/tablaUsuarios.php');
 							alertify.success("Agregado con exito");
 						}else{
 							alertify.error("Fallo al agregar :(");

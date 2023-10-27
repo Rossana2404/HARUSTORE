@@ -1,7 +1,7 @@
 <?php 
 
-	require_once "Conexion.php";
-	require_once "..clases/Clientes.php";
+	require_once "../../conexion/database.php";
+	require_once "../../Clientes.php";
 
 	$obj= new clientes();
 

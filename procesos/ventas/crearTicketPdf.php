@@ -18,7 +18,7 @@ function file_get_contents_curl($url) {
     return $data;
 }
 
- $html=file_get_contents("http://localhost/Music Pro/vistas/ventas/ticketVentaPdf.php?idventa=".$id);
+ $html=file_get_contents("http://localhost/Music Pro/vistas/ventas/boletaVentaPdf.php?idventa=".$id);
 
 
  

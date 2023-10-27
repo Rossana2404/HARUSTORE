@@ -167,8 +167,8 @@
         </div>
         <div class="login-registro">
             <img src="./../assents/img/logopata.jpeg" alt="" style="width: 50px; height: 50px;">
-            <a href="/../Harustore///loginusuario.php">Ingresa /</a>
-            <a href="/../Harustore///registro.php">Regístrate</a>
+            <a href="../loginusuario.php">Ingresa /</a>
+            <a href="../registro.php">Regístrate</a>
         </div>
         <div class="redes-sociales">
             <a href="#"><i class="fab fa-facebook"></i></a>
@@ -182,7 +182,7 @@
 <!-- Segundo encabezado -->
 <header class="menu-container1">
     <div class="menu-item">
-        <a href="/../Harustore//index.php">
+        <a href="/index.php">
             <i class="fas fa-home"></i> Inicio
         </a>
     </div>
@@ -225,15 +225,18 @@
 
             <!-- Tarjeta 2 -->
 
-            <div class="col-lg-4 col-md-6 ">
-                <div class="card">
-                    <div class="card-body text-center">
-                        <h5 class="card-title text-center"><img id="img_obs" src="./../assents/img/perro/comida.perro.jpg" class="img-fluid" alt="">
-                        </h5>
-                        <h3>Alimento</h3>
-                    </div>
-                </div>
+            <div class="col-lg-4 col-md-6">
+    <div class="card">
+        <a href="../alimentoperro.php"> <!-- Cambia "otra_pagina.php" por la URL de la página a la que deseas redirigirte -->
+            <div class="card-body text-center">
+                <h5 class="card-title text-center">
+                    <img id="img_obs" src="./../assents/img/perro/comida.perro.jpg" class="img-fluid" alt="">
+                </h5>
+                <h3>Alimento</h3>
             </div>
+        </a>
+    </div>
+</div>
 
             <!-- Tarjeta 3 -->
             <div class="col-lg-4 col-md-6">

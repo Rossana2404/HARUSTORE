@@ -3,16 +3,17 @@ session_start();
 if(isset($_SESSION['usuario'])){
 
 	?>
+
+
 	<!DOCTYPE html>
 	<html>
 	<head>
 		<title>Productos</title>
 		<?php require_once "menu.php"; ?>
-		<?php require_once "conexion/database.php"; 
+		<?php require_once "../conexion/database.php"; 
 		$c= new conectar();
 		$conexion=$c->conexion();
-		$sql="SELECT categoria_id,nombre
-		from categorias";
+		$sql="SELECT SELECT idprod,nombre from producto";
 		$result=mysqli_query($conexion,$sql);
 		?>
 	</head>
@@ -21,8 +22,8 @@ if(isset($_SESSION['usuario'])){
 			<h1>Productos</h1>
 			<div class="row">
 				<div class="col-sm-4">
-					<form id="frmProductos" enctype="multipart/form-data">
-						<label>Categoria</label>
+					<form id="frmProducto" enctype="multipart/form-data">
+						<label>Categorias</label>
 						<select class="form-control input-sm" id="categoriaSelect" name="categoriaSelect">
 							<option value="A">Selecciona Categoria</option>
 							<?php while($ver=mysqli_fetch_row($result)): ?>
@@ -60,13 +61,13 @@ if(isset($_SESSION['usuario'])){
 						<h4 class="modal-title" id="myModalLabel">Actualiza Producto</h4>
 					</div>
 					<div class="modal-body">
-						<form id="frmProducto" enctype="multipart/form-data">
+						<form id="frmProductoU" enctype="multipart/form-data">
 							<input type="text" id="idProducto" hidden="" name="idProducto">
 							<label>Categoria</label>
 							<select class="form-control input-sm" id="categoriaSelectU" name="categoriaSelectU">
 								<option value="A">Selecciona Categoria</option>
 								<?php 
-								$sql="SELECT categoria_id,nombre
+								$sql="SELECT id_categoria,nombreCategoria
 								from categorias";
 								$result=mysqli_query($conexion,$sql);
 								?>
@@ -86,7 +87,7 @@ if(isset($_SESSION['usuario'])){
 						</form>
 					</div>
 					<div class="modal-footer">
-						<button id="btnActualizaproducto" type="button" class="btn btn-warning" data-dismiss="modal">Actualizar</button>
+						<button id="btnActualizaProducto" type="button" class="btn btn-warning" data-dismiss="modal">Actualizar</button>
 
 					</div>
 				</div>
@@ -97,16 +98,16 @@ if(isset($_SESSION['usuario'])){
 	</html>
 
 	<script type="text/javascript">
-		function agregaDatosProducto(idproducto){
+		function agregaDatosProducto(idProducto){
 			$.ajax({
 				type:"POST",
-				data:"prod=" + idproducto,
-				url:"../procesos/",
+				data:"idart=" + idProducto,
+				url:"../procesos/Productos/obtenDatosProducto.php",
 				success:function(r){
 					
 					dato=jQuery.parseJSON(r);
-					$('#idproducto').val(dato['id_producto']);
-					$('#categoriaSelectU').val(dato['categoria_id']);
+					$('#idProducto').val(dato['id_producto']);
+					$('#categoriaSelectU').val(dato['id_categoria']);
 					$('#nombreU').val(dato['nombre']);
 					$('#descripcionU').val(dato['descripcion']);
 					$('#cantidadU').val(dato['cantidad']);
@@ -116,15 +117,15 @@ if(isset($_SESSION['usuario'])){
 			});
 		}
 
-		function eliminaproducto(idproducto){
-			alertify.confirm('¿Desea eliminar este producto?', function(){ 
+		function eliminProducto(idArticulo){
+			alertify.confirm('¿Desea eliminar este Producto?', function(){ 
 				$.ajax({
 					type:"POST",
-					data:"idproducto=" + idproducto,
-					url:"../procesos/productos/eliminarproducto.php",
+					data:"idProducto=" + idArticulo,
+					url:"../procesos/Productos/eliminarArticulo.php",
 					success:function(r){
 						if(r==1){
-							$('#tablaproductosLoad').load("productos/tablaproductos.php");
+							$('#tablaProductoLoad').load("Productos/tablaProducto.php");
 							alertify.success("Eliminado con exito!!");
 						}else{
 							alertify.error("No se pudo eliminar :(");
@@ -139,16 +140,16 @@ if(isset($_SESSION['usuario'])){
 
 	<script type="text/javascript">
 		$(document).ready(function(){
-			$('#btnActualizaproducto').click(function(){
+			$('#btnActualizaProducto').click(function(){
 
-				datos=$('#frmproductosU').serialize();
+				datos=$('#frmProductoU').serialize();
 				$.ajax({
 					type:"POST",
 					data:datos,
-					url:"../procesos/productos/actualizaproductos.php",
+					url:"../procesos/Productos/actualizaProducto.php",
 					success:function(r){
 						if(r==1){
-							$('#tablaproductosLoad').load("productos/tablaproductos.php");
+							$('#tablaProductoLoad').load("Productos/tablaProducto.php");
 							alertify.success("Actualizado con exito :D");
 						}else{
 							alertify.error("Error al actualizar :(");
@@ -161,21 +162,21 @@ if(isset($_SESSION['usuario'])){
 
 	<script type="text/javascript">
 		$(document).ready(function(){
-			$('#tablaproductosLoad').load("productos/tablaproductos.php");
+			$('#tablaProductoLoad').load("Productos/tablaProducto.php");
 
-			$('#btnAgregaproducto').click(function(){
+			$('#btnAgregaProducto').click(function(){
 
-				vacios=validarFormVacio('frmproductos');
+				vacios=validarFormVacio('frmProducto');
 
 				if(vacios > 0){
 					alertify.alert("Debes llenar todos los campos!!");
 					return false;
 				}
 
-				var formData = new FormData(document.getElementById("frmproductos"));
+				var formData = new FormData(document.getElementById("frmProducto"));
 
 				$.ajax({
-					url: "../procesos/productos/insertaproductos.php",
+					url: "../procesos/Productos/insertaProducto.php",
 					type: "post",
 					dataType: "html",
 					data: formData,
@@ -186,8 +187,8 @@ if(isset($_SESSION['usuario'])){
 					success:function(r){
 						
 						if(r == 1){
-							$('#frmproductos')[0].reset();
-							$('#tablaproductosLoad').load("productos/tablaproductos.php");
+							$('#frmProducto')[0].reset();
+							$('#tablaProductoLoad').load("Productos/tablaProducto.php");
 							alertify.success("Agregado con exito :D");
 						}else{
 							alertify.error("Fallo al subir el archivo :(");
